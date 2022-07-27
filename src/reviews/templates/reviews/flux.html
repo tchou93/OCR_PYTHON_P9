@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1> Bienvenue dans le flux </h1>
+
+{% csrf_token %}
+<section class="review-button">
+    <button onclick="location.href='{% url 'create_ticket' %}'" id="button-submit-ask-review">Demander une critique</button>
+    <button onclick="location.href='{% url 'create_review_solo' %}'" id="button-submit-create-review">Créer une critique</button>
+</section>
+
+{% for post in all_posts %}
+    {% if post.content_type == 'TICKET' %}
+        {% include 'reviews/post_ticket.html' %}
+    {% elif post.content_type == 'REVIEW' %}
+        {% include 'reviews/post_review.html' %}
+    {% endif %}
+{% endfor %}
+
+{% endblock content %}

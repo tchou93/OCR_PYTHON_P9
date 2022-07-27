@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="subscription">
+    <p>Suivre d'autres utilisateurs</p>
+    <form method="POST" >
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Envoyer">
+    </form>
+</section>
+
+<section class="subscriptions_listing">
+    <p>Abonnements</p>
+    {% for followed_user in followed_users %}
+    <div class="test">
+        <p> {{followed_user}} </p>
+        <a class="unsubscribe" href='{% url 'unsubscribe' followed_user.pk %}'>Se désabonner</a>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="subscribers_listing">
+    <p>Abonnés</p>
+    {% for followed_by in followed_bys %}
+    <div class="test">
+        <p class="listing_font"> {{followed_by}} </p>
+    </div>
+    {% endfor %}
+</section>
+
+
+{% endblock content %}

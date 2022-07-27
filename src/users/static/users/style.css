@@ -1,0 +1,165 @@
+/* ------------------ */
+/* General parameters */
+/* ------------------ */
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+body
+{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-title-font-size {
+    font-family: 'Shrikhand', cursive;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+/* Header part */
+.header-wrapper {
+    display: flex;
+    position:sticky;
+    justify-content:space-around;
+    top: 0;
+    background-color: grey;
+    width: 100%;
+    z-index: 3000;
+}
+
+.nav-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links a {
+    padding: 0 20px 0 20px;
+    color: black;
+    text-decoration: none;
+    width: auto;
+}
+
+.nav-links a:hover{
+    color:red;
+}
+
+/* Session connexion */
+.connexion-wrapper {
+    display:flex;
+}
+
+.connexion-register{
+    display:flex;
+    flex-direction: column;
+    padding-right: 20rem;
+}
+
+#button-register {
+    width:100px;
+}
+
+/* Session register */
+.register-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Subscriptions */
+
+.message{
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.test{
+    display: flex;
+    justify-content: space-between;
+    width: 50rem;
+    border:1px solid black;
+}
+
+.unsubscribe{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.review-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.review-part{
+    padding: 10px;
+    border:1px solid black;
+    width: 100%;
+}
+
+#button-submit-selfreview{
+    margin-top: 10px;
+}
+
+
+
+.ticket-img {
+    width: 20%;
+    object-fit: cover;
+}
+
+.btn-primary {
+    width: 30%;
+    color: black;
+    background-color: white;
+    border:1px solid black;
+}
+
+.card--modify-width-outside {
+    width: 30rem;
+}
+
+.card--modify-width-inside {
+    width: 25rem;
+}
+
+.card-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-around;
+}
+.card{
+    margin-top: 1rem;
+    color: black;
+    border:1px solid black;
+    word-break: break-word;
+}
+
+.card--font{
+    font-size: 0.7rem;
+}
+
+.card-body{
+    display: flex;
+    justify-content: space-between ;
+}
+
+.message{
+    color: red;
+}
+
+.card-title{
+    display: flex;
+    justify-content: center;
+    background-color: grey;
+}

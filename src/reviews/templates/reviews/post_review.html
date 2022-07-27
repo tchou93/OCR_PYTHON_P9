@@ -1,0 +1,35 @@
+<div class="card card--modify-width-outside">
+    {% if post.user == user %}
+        <h5 class="card-title">Vous avez publié une critique</h5>
+    {% else %}
+        <h5 class="card-title">{{post.user.username}} a publié une critique</h5>
+    {% endif %}
+    <div class="card-header">
+        <p class="card-text">{{ post.headline }} - Note: {{ post.rating }}/5</p>
+        <p class="card-text">{{ post.time_created}}</p>
+    </div>
+
+    <p class="card-text">{{ post.body}}</p>
+
+    <div class="card-body">
+        <div class="card card--modify-width-inside">
+            <h5 class="card-title"> Ticket - {{ post.ticket.user.username }}</h5>
+            <div class="card-header">
+                <p class="card-text">{{ post.ticket.title }}</p>
+                {% if post.user == user %}
+                    <p class="card-text">{{ post.ticket.time_created}}</p>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{post.ticket.description}}</p>
+                <img class="ticket-img" src="{{post.ticket.image.url}}" alt="image">
+            </div>
+        </div>
+    </div>
+    {% if target == "Posts" %}
+        <div class="card-footer">
+            <a href="{% url 'update_review' post.pk %}" class="btn btn-primary">Modifier</a>
+            <a href="{% url 'delete_review' post.pk %}" class="btn btn-primary">Supprimer</a>
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<section class="register-wrapper">
+    <h2>Inscrivez-vous</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button onclick="location.href='{% url 'login' %}'" id="button-return">Retourner</button>
+        <button type="submit" id="button-submit-subscribe">S'inscrire</button>
+
+
+    </form>
+</section>
+{% endblock content%}

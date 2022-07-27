@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block content %}
+<section class="review-wrapper">
+    <p>Modifier votre revue</p>
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="review-part">
+            <p>Vous êtes en train de poster en réponse à</p>
+            <div class="card card--modify-width-inside">
+                <h5 class="card-title"> Ticket - {{ ticket.user.username }}</h5>
+                <div class="card-header">
+                    <p class="card-text">{{ ticket.title }}</p>
+                    <p class="card-text">{{ ticket.time_created}}</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ticket.description}}a</p>
+                    <img class="ticket-img" src="{{ticket.image.url}}" alt="image">
+                </div>
+            </div>
+        </div>
+        <div class="review-part">
+            <p>Critique</p>
+            {{ r_form|crispy}}
+        </div>
+        <button type="submit" id="button-submit-selfreview">Envoyer</button>
+    </form>
+</section>
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block content %}
+<section class="review-wrapper">
+    <p>Modifier votre ticket</p>
+    <form method="post"  enctype='multipart/form-data'>
+        {% csrf_token %}
+        <div class="review-part">
+            {{ t_form|crispy}}
+        </div>
+        <button type="submit" id="button-submit-selfreview">Envoyer</button>
+    </form>
+</section>
+{% endblock content %}

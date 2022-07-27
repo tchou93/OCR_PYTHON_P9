@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="review-wrapper">
+
+        {% csrf_token %}
+        {% for post in user_all_tickets %}
+             {% include 'reviews/post_ticket.html' %}
+        {% endfor %}
+
+        {% for post in user_all_reviews %}
+             {% include 'reviews/post_review.html' %}
+        {% endfor %}
+
+</section>
+{% endblock content %}
