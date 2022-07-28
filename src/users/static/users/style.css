@@ -4,34 +4,74 @@
 html {
     box-sizing: border-box;
     font-size: 16px;
+
 }
 
 body
 {
     font-family: 'Roboto', sans-serif;
-    margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color:#d3d3d3;
+}
+
+/* ------ */
+/* Header */
+/* ------ */
+header {
+    display: flex;
+    justify-content:space-around;
+    z-index: 3000;
+    position:sticky;
+    align-items: center;
+    height: 4rem;
+    background-color: white;
+    width: 100%;
+    position: relative;
 }
 
 .main-title-font-size {
     font-family: 'Shrikhand', cursive;
-    font-size: 1.8rem;
-    font-weight: 500;
+    font-size: 2rem;
+    margin:0;
 }
 
-/* Header part */
-.header-wrapper {
-    display: flex;
-    position:sticky;
-    justify-content:space-around;
-    top: 0;
-    background-color: grey;
+.highlight-effect-top{
+    position: absolute;
     width: 100%;
-    z-index: 3000;
+    height: 7px;
+    background: linear-gradient(#d3d3d3,#ffffff);
+    top: 0;
 }
+
+.highlight-effect-bottom {
+    position: absolute;
+    width: 100%;
+    height: 7px;
+    background: linear-gradient(#ffffff,#d3d3d3);
+    bottom: 0;
+}
+/* ---------------------- */
+/* Main page disconnected */
+/* ---------------------- */
+main {
+    width: 100%;
+}
+.connexion-wrapper {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.connexion-register{
+    display:flex;
+    flex-direction: column;
+    padding-right: 2rem;
+}
+
 
 .nav-links{
     display: flex;
@@ -47,19 +87,9 @@ body
 }
 
 .nav-links a:hover{
-    color:red;
+    color:blue;
 }
 
-/* Session connexion */
-.connexion-wrapper {
-    display:flex;
-}
-
-.connexion-register{
-    display:flex;
-    flex-direction: column;
-    padding-right: 20rem;
-}
 
 #button-register {
     width:100px;
@@ -114,13 +144,6 @@ body
     object-fit: cover;
 }
 
-.btn-primary {
-    width: 30%;
-    color: black;
-    background-color: white;
-    border:1px solid black;
-}
-
 .card--modify-width-outside {
     width: 30rem;
 }
@@ -163,3 +186,7 @@ body
     justify-content: center;
     background-color: grey;
 }
+
+/* ------------------ */
+/* Bootstrap modifier */
+/* ------------------ */

@@ -3,16 +3,17 @@
 
 <section class="connexion-wrapper">
     <div class="connexion-register">
-        <h2>Inscrivez-vous maintenant</h2>
-        <button onclick="location.href='{% url 'register' %}'" id="button-register">S'inscrire</button>
+        <h3>Inscrivez-vous maintenant</h3>
+        <a href="{% url 'register' %}" class="btn btn-primary">S'inscrire</a>
     </div>
     <div class="connexion-login">
         <form method="post">
             {% csrf_token %}
-            <h2>Connectez vous</h2>
+            <h3>Connectez vous</h3>
             {{ form.as_p }}
-            <button type="submit" id="button-submit-login">Se connecter</button>
+            <button class="btn btn-primary" type="submit" id="button-submit-login">Se connecter</button>
         </form>
     </div>
 </section>
+
 {% endblock content %}

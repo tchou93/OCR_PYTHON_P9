@@ -15,7 +15,7 @@
     </head>
 
     <body>
-        <header class="header-wrapper">
+        <header>
 			<h1 class="main-title-font-size"> LITReview </h1>
             {% if user.is_authenticated %}
                 <nav class="nav-links">
@@ -25,16 +25,19 @@
                     <a href="{% url 'logout' %}">Déconnnexion ({{ request.user }})</a>
                 </nav>
             {% endif %}
+            <div class="highlight-effect-top"> </div>
+            <div class="highlight-effect-bottom"> </div>
 		</header>
-        <div class="message">
-            {% if messages %}
-                {% for message in messages %}
-                    {{message}}
-                {% endfor %}
-            {% endif %}
-        </div>
-        {% block content %}{% endblock content %}
 
+        <main>
+            <div class="message">
+                {% if messages %}
+                    {% for message in messages %}
+                        {{message}}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% block content %}{% endblock content %}
+        </main>
     </body>
-
 </html>
