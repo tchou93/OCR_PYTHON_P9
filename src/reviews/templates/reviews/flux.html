@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1> Bienvenue dans le flux </h1>
+<section class="flux">
+    <h1> Bienvenue dans le flux </h1>
 
-{% csrf_token %}
-<section class="review-button">
-    <button onclick="location.href='{% url 'create_ticket' %}'" id="button-submit-ask-review">Demander une critique</button>
-    <button onclick="location.href='{% url 'create_review_solo' %}'" id="button-submit-create-review">Créer une critique</button>
+    {% csrf_token %}
+    <section class="review-button">
+        <a href="{% url 'create_ticket' %}" class="btn btn-primary">Demander une critique</a>
+        <a href="{% url 'create_review_solo' %}" class="btn btn-primary">Créer une critique</a>
+    </section>
 </section>
 
 {% for post in all_posts %}

@@ -57,8 +57,11 @@ header {
 /* Main page disconnected */
 /* ---------------------- */
 main {
-    width: 100%;
+    width: 90%;
+    display: flex;
+    justify-content:center;
 }
+
 .connexion-wrapper {
     display:flex;
     justify-content: space-around;
@@ -72,6 +75,14 @@ main {
     padding-right: 2rem;
 }
 
+.register-wrapper {
+    width: 50%;
+}
+
+.review-button {
+    display:flex;
+    justify-content: space-around;
+}
 
 .nav-links{
     display: flex;
@@ -95,11 +106,7 @@ main {
     width:100px;
 }
 
-/* Session register */
-.register-wrapper{
-    display: flex;
-    flex-direction: column;
-}
+
 
 /* Subscriptions */
 
@@ -125,12 +132,19 @@ main {
     display: flex;
     flex-direction: column;
     align-items:center;
+    margin-bottom: 20px;
 }
 
 .review-part{
     padding: 10px;
     border:1px solid black;
     width: 100%;
+}
+
+.ticket-buttons, .review-buttons{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
 }
 
 #button-submit-selfreview{
@@ -186,7 +200,6 @@ main {
     justify-content: center;
     background-color: grey;
 }
-
 /* ------------------ */
 /* Bootstrap modifier */
 /* ------------------ */

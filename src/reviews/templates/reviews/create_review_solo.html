@@ -2,19 +2,23 @@
 {% load crispy_forms_filters %}
 {% block content %}
 <section class="review-wrapper">
-    <p>Critique</p>
+    <h3>Critique</h3>
     <form method="post"  enctype='multipart/form-data'>
         {% csrf_token %}
         <div class="review-part">
-            <p>Livre / Article</p>
+            <h4>Livre / Article</h4>
             {{ t_form|crispy}}
         </div>
 
         <div class="review-part">
-            <p>Critique</p>
+            <h4>Critique</h4>
             {{ r_form|crispy}}
+            <div class="review-buttons">
+                <a href="{% url 'flux' %}" class="btn btn-primary">Retourner</a>
+                <button class="btn btn-primary" type="submit">Envoyer</button>
+            </div>
         </div>
-        <button type="submit" id="button-submit-selfreview">Envoyer</button>
+
     </form>
 </section>
 {% endblock content %}
