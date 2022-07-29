@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.datastructures import MultiValueDictKeyError
@@ -16,18 +15,22 @@ from users.models import UserFollow
 def create_review_solo(request):
     if request.method == 'POST':
         r_form = ReviewForm(request.POST)
+        try:
+            image = request.FILES['image']
+        except MultiValueDictKeyError:
+            image = None
+
         t_form = TicketForm(request.POST, request.FILES)
         if r_form.is_valid() and t_form.is_valid():
             new_ticket = Ticket.objects.create(title=request.POST['title'],
                                                description=request.POST['description'],
                                                user=request.user,
-                                               image=request.FILES['image'])
+                                               image=image)
             new_review = Review.objects.create(ticket=new_ticket,
                                                rating=request.POST['rating'],
                                                user=request.user,
                                                headline=request.POST['headline'],
                                                body=request.POST['body'])
-            messages.success(request, 'La revue a été crée.')
             return redirect('flux')
     else:
         r_form = ReviewForm()
@@ -50,7 +53,6 @@ def create_review(request, pk):
                                                user=request.user,
                                                headline=request.POST['headline'],
                                                body=request.POST['body'])
-            messages.success(request, 'La revue a été crée.')
             return redirect('flux')
     else:
         r_form = ReviewForm()
@@ -68,7 +70,6 @@ def update_ticket(request, pk):
         t_form = TicketForm(request.POST, request.FILES, instance=ticket)
         if t_form.is_valid():
             t_form.save()
-            messages.success(request, 'Le ticket a été mis à jour.')
             return redirect('posts')
     else:
         t_form = TicketForm(instance=ticket)
@@ -90,7 +91,6 @@ def create_ticket(request):
                                                description=request.POST['description'],
                                                user=request.user,
                                                image=image)
-            messages.success(request, 'Le ticket a été crée.')
             return redirect('flux')
     else:
         t_form = TicketForm()
@@ -102,7 +102,6 @@ def create_ticket(request):
 def delete_ticket(request, pk):
     ticket = get_object_or_404(Ticket, id=pk)
     ticket.delete()
-    messages.success(request, 'Le ticket a été supprimé.')
     return redirect('posts')
 
 
@@ -114,7 +113,6 @@ def update_review(request, pk):
         r_form = ReviewForm(request.POST, instance=review)
         if r_form.is_valid():
             r_form.save()
-            messages.success(request, 'La revue a été mis à jour.')
             return redirect('posts')
     else:
         r_form = ReviewForm(instance=review)

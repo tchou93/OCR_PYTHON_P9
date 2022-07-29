@@ -22,7 +22,9 @@
             </div>
             <div class="card-body">
                 <p class="card-text">{{post.ticket.description}}</p>
-                <img class="ticket-img" src="{{post.ticket.image.url}}" alt="image">
+                {% if post.ticket.image %}
+                    <img class="ticket-img" src="{{post.ticket.image.url}}" alt="image">
+                {% endif %}
             </div>
         </div>
     </div>

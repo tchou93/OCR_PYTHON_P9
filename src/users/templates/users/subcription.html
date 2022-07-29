@@ -1,33 +1,47 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 <section class="subscription">
-    <p>Suivre d'autres utilisateurs</p>
+    <h4>Suivre d'autres utilisateurs</h4>
+
     <form method="POST" >
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Envoyer">
+        <div class="form-subscription">
+            <div class="form-subscription2">
+                {{ form|crispy }}
+            </div>
+            <button class="btn btn-primary" type="submit" id="send-subscription">Envoyer</button>
+        </div>
     </form>
-</section>
-
-<section class="subscriptions_listing">
-    <p>Abonnements</p>
-    {% for followed_user in followed_users %}
-    <div class="test">
-        <p> {{followed_user}} </p>
-        <a class="unsubscribe" href='{% url 'unsubscribe' followed_user.pk %}'>Se désabonner</a>
+    <div class="message">
+        {% if messages %}
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        {% endif %}
     </div>
-    {% endfor %}
+    <section class="subscriptions_listing">
+        {% if followed_users %}
+            <h4>Abonnements</h4>
+            {% for followed_user in followed_users %}
+                <div class="test">
+                    <p> {{followed_user}} </p>
+                    <a class="unsubscribe" href='{% url 'unsubscribe' followed_user.pk %}'>désabonner</a>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </section>
+
+    <section class="subscribers_listing">
+        {% if followed_bys %}
+            <h4>Abonnés</h4>
+            {% for followed_by in followed_bys %}
+                <div class="test">
+                    <p class="listing_font"> {{followed_by}} </p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </section>
 </section>
-
-<section class="subscribers_listing">
-    <p>Abonnés</p>
-    {% for followed_by in followed_bys %}
-    <div class="test">
-        <p class="listing_font"> {{followed_by}} </p>
-    </div>
-    {% endfor %}
-</section>
-
-
 {% endblock content %}

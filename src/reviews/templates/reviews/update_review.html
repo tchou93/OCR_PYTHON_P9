@@ -2,12 +2,12 @@
 {% load crispy_forms_filters %}
 {% block content %}
 <section class="review-wrapper">
-    <p>Modifier votre revue</p>
+    <h3>Modifier votre critique</h3>
     <form method="post">
         {% csrf_token %}
 
         <div class="review-part">
-            <p>Vous êtes en train de poster en réponse à</p>
+            <h4>Vous êtes en train de poster en réponse à</h4>
             <div class="card card--modify-width-inside">
                 <h5 class="card-title"> Ticket - {{ ticket.user.username }}</h5>
                 <div class="card-header">
@@ -20,11 +20,15 @@
                 </div>
             </div>
         </div>
+
         <div class="review-part">
-            <p>Critique</p>
+            <h4>Critique</h4>
             {{ r_form|crispy}}
+            <div class="review-buttons">
+                <a href="{% url 'posts' %}" class="btn btn-primary">Retourner</a>
+                <button class="btn btn-primary" type="submit">Envoyer</button>
+            </div>
         </div>
-        <button type="submit" id="button-submit-selfreview">Envoyer</button>
     </form>
 </section>
 {% endblock content %}

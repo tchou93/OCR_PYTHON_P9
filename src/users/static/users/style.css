@@ -58,8 +58,13 @@ header {
 /* ---------------------- */
 main {
     width: 90%;
+    margin: 20px 0 20px 0;
+}
+
+.flux {
     display: flex;
-    justify-content:center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .connexion-wrapper {
@@ -81,9 +86,14 @@ main {
 
 .review-button {
     display:flex;
+    width: 30rem;
     justify-content: space-around;
 }
 
+.title-post {
+    font-size: 1.5rem;
+    font-weight: bold ;
+}
 .nav-links{
     display: flex;
     justify-content: center;
@@ -110,22 +120,42 @@ main {
 
 /* Subscriptions */
 
-.message{
-    font-style: italic;
-    font-size: 1rem;
+.subscription {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.form-subscription {
+    display: flex;
+    justify-content: center;
+    width: 52rem;
+    margin-bottom: 20px;
+}
+
+.form-subscription2{
+    width: 20rem;
+}
+
+#send-subscription {
+    margin-left: 5px;
+}
 .test{
     display: flex;
     justify-content: space-between;
     width: 50rem;
-    border:1px solid black;
+    background-color: white;
+    border:1px solid #d3d3d3;
+    border-radius: 5px;
 }
 
 .unsubscribe{
     display: flex;
     justify-content: center;
-    align-items: center;
+}
+
+.subscriptions_listing{
+    margin-bottom: 20px;
 }
 
 .review-wrapper{

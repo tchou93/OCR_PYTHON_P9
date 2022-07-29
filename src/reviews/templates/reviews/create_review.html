@@ -2,19 +2,35 @@
 {% load crispy_forms_filters %}
 {% block content %}
 <section class="review-wrapper">
-    <h3>Créer une critique</h3>
-    <div class="review-part">
-        <h4>Vous êtes en train de poster en réponse à</h4>
-        {% include 'reviews/post_ticket.html' %}
-    </div>
-    <div class="review-part">
-        <form method="post">
-            {% csrf_token %}
+    <h3>Créer votre critique</h3>
+    <form method="post">
+        {% csrf_token %}
 
-            <p>Critique</p>
+        <div class="review-part">
+            <h4>Vous êtes en train de poster en réponse à</h4>
+            <div class="card card--modify-width-inside">
+                <h5 class="card-title"> Ticket - {{ post.user.username }}</h5>
+                <div class="card-header">
+                    <p class="card-text">{{ post.title }}</p>
+                    <p class="card-text">{{ post.time_created}}</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{post.description}}</p>
+                    {% if post.image %}
+                        <img class="ticket-img" src="{{post.image.url}}" alt="image">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="review-part">
+            <h4>Critique</h4>
             {{ r_form|crispy}}
-            <button type="submit" id="button-submit-selfreview">Envoyer</button>
-        </form>
-    </div>
+            <div class="review-buttons">
+                <a href="{% url 'flux' %}" class="btn btn-primary">Retourner</a>
+                <button class="btn btn-primary" type="submit">Envoyer</button>
+            </div>
+        </div>
+    </form>
 </section>
 {% endblock content %}
