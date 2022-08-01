@@ -5,8 +5,14 @@
         <h5 class="card-title">{{post.user.username}} a publié une critique</h5>
     {% endif %}
     <div class="card-header">
-        <p class="card-text">{{ post.headline }} - Note: {{ post.rating }}/5</p>
-        <p class="card-text">{{ post.time_created}}</p>
+        {% if post.rating == 0 %} <p class="card-text">{{ post.headline }} - <span> <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span></p>
+        {% elif post.rating == 1 %} <p class="card-text">{{ post.headline }} - <span> <i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span></p>
+        {% elif post.rating == 2 %} <p class="card-text">{{ post.headline }} - <span> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span></p>
+        {% elif post.rating == 3 %} <p class="card-text">{{ post.headline }} - <span> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span></p>
+        {% elif post.rating == 4 %} <p class="card-text">{{ post.headline }} - <span> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span></p>
+        {% elif post.rating == 5 %} <p class="card-text">{{ post.headline }} - <span> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
+        {% endif %}
+        <p>{{ post.time_created}}</p>
     </div>
 
     <p class="card-text">{{ post.body}}</p>

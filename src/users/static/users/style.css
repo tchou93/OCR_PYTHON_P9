@@ -1,14 +1,14 @@
-/* ------------------ */
-/* General parameters */
-/* ------------------ */
+/***********************/
+/* Style for base.html */
+/***********************/
+
 html {
     box-sizing: border-box;
     font-size: 16px;
 
 }
 
-body
-{
+body {
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
@@ -17,16 +17,11 @@ body
     background-color:#d3d3d3;
 }
 
-/* ------ */
-/* Header */
-/* ------ */
 header {
     display: flex;
     justify-content:space-around;
-    z-index: 3000;
-    position:sticky;
     align-items: center;
-    height: 4rem;
+    height: 5rem;
     background-color: white;
     width: 100%;
     position: relative;
@@ -38,7 +33,25 @@ header {
     margin:0;
 }
 
-.highlight-effect-top{
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links a {
+    padding: 0 1.5rem 0 1.5rem;
+    color: black;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    background-color: black;
+    color: white;
+    border-radius: 0.25rem;
+}
+
+.highlight-effect-top {
     position: absolute;
     width: 100%;
     height: 7px;
@@ -53,13 +66,42 @@ header {
     background: linear-gradient(#ffffff,#d3d3d3);
     bottom: 0;
 }
-/* ---------------------- */
-/* Main page disconnected */
-/* ---------------------- */
+
 main {
     width: 90%;
-    margin: 20px 0 20px 0;
+    margin: 1.5rem 0 1.5rem 0;
 }
+
+/************************/
+/* Style for login.html */
+/************************/
+
+.connexion-wrapper {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.connexion-register {
+    display:flex;
+    flex-direction: column;
+    padding-right: 2rem;
+}
+
+/***************************/
+/* Style for register.html */
+/***************************/
+
+.register-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/***********************/
+/* Style for flux.html */
+/***********************/
 
 .flux {
     display: flex;
@@ -67,58 +109,92 @@ main {
     align-items: center;
 }
 
-.connexion-wrapper {
+.review-button {
     display:flex;
+    width: 40rem;
     justify-content: space-around;
-    align-items: center;
+}
+
+/*************************************************/
+/* Style for post_ticket.html & post_review.html */
+/*************************************************/
+
+.card {
+    margin-top: 1rem;
+    color: black;
+    border:1px solid black;
+    word-break: break-word;
+}
+
+.card--modify-width-outside {
+    width: 40rem;
+}
+
+.card--modify-width-inside {
     width: 100%;
 }
 
-.connexion-register{
-    display:flex;
-    flex-direction: column;
-    padding-right: 2rem;
+.card-title {
+    display: flex;
+    justify-content: center;
+    background-color: grey;
 }
 
-.register-wrapper {
-    width: 50%;
+.card-header{
+    display: flex;
+    justify-content: space-between;
 }
 
-.review-button {
-    display:flex;
-    width: 30rem;
+.card-body{
+    display: flex;
+    justify-content: space-between ;
+}
+
+.card-footer {
+    display: flex;
     justify-content: space-around;
+}
+
+.ticket-img {
+    width: 20%;
+    object-fit: cover;
+}
+
+/*
+Style for:
+create_ticket.html
+create_review_solo.html
+update_review.html
+update_ticket.html
+posts.html
+*/
+
+
+.review-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.review-part {
+    padding: 1rem;
+    border:1px solid black;
+}
+
+.ticket-buttons, .review-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1rem;
 }
 
 .title-post {
     font-size: 1.5rem;
     font-weight: bold ;
 }
-.nav-links{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.nav-links a {
-    padding: 0 20px 0 20px;
-    color: black;
-    text-decoration: none;
-    width: auto;
-}
-
-.nav-links a:hover{
-    color:blue;
-}
-
-
-#button-register {
-    width:100px;
-}
-
-
-
-/* Subscriptions */
+/*******************************/
+/* Style for subscription.html */
+/*******************************/
 
 .subscription {
     display: flex;
@@ -129,21 +205,28 @@ main {
 .form-subscription {
     display: flex;
     justify-content: center;
-    width: 52rem;
-    margin-bottom: 20px;
 }
 
 .form-subscription2{
-    width: 20rem;
+    width: 100%;
 }
 
 #send-subscription {
-    margin-left: 5px;
+    margin-left: 0.3rem;
 }
+
+.subscriptions_listing, .subscribers_listing{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem 0 1.5rem 0;
+    width: 100%;
+}
+
 .test{
     display: flex;
     justify-content: space-between;
-    width: 50rem;
+    width: 70%;
     background-color: white;
     border:1px solid #d3d3d3;
     border-radius: 5px;
@@ -154,82 +237,51 @@ main {
     justify-content: center;
 }
 
-.subscriptions_listing{
-    margin-bottom: 20px;
-}
+/*********************/
+/* Style for message */
+/*********************/
 
-.review-wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-    margin-bottom: 20px;
-}
-
-.review-part{
-    padding: 10px;
-    border:1px solid black;
-    width: 100%;
-}
-
-.ticket-buttons, .review-buttons{
-    display: flex;
-    justify-content: space-between;
-    padding-top: 10px;
-}
-
-#button-submit-selfreview{
-    margin-top: 10px;
-}
-
-
-
-.ticket-img {
-    width: 20%;
-    object-fit: cover;
-}
-
-.card--modify-width-outside {
-    width: 30rem;
-}
-
-.card--modify-width-inside {
-    width: 25rem;
-}
-
-.card-header{
-    display: flex;
-    justify-content: space-between;
-}
-
-.card-footer {
-    display: flex;
-    justify-content: space-around;
-}
-.card{
-    margin-top: 1rem;
-    color: black;
-    border:1px solid black;
-    word-break: break-word;
-}
-
-.card--font{
-    font-size: 0.7rem;
-}
-
-.card-body{
-    display: flex;
-    justify-content: space-between ;
-}
-
-.message{
+.message {
     color: red;
 }
 
-.card-title{
-    display: flex;
-    justify-content: center;
-    background-color: grey;
+/* ----------------------- */
+/* Responsive part: tablet */
+/* ----------------------- */
+
+@media screen and (max-width: 991px) {
+    html {
+        font-size: 15px;
+    }
 }
-/* ------------------ */
-/* Bootstrap modifier */
-/* ------------------ */
+/* ----------------------- */
+/* Responsive part: Mobile */
+/* ----------------------- */
+
+@media screen and (max-width: 767px) {
+    html {
+        font-size: 14px;
+    }
+
+    .nav-links a {
+        padding: 0 0.5rem 0 0.5rem;
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .review-button {
+        width: 100%;
+    }
+
+    .card--modify-width-outside {
+        width: 100%;
+    }
+
+    .card--modify-width-inside {
+        width: 100%;
+    }
+}
