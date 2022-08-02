@@ -1,4 +1,4 @@
-<div class="card card--modify-width-outside">
+<article class="card">
     {% if post.user == user %}
         <h5 class="card-title">Vous avez publié une critique</h5>
     {% else %}
@@ -15,29 +15,17 @@
         <p>{{ post.time_created}}</p>
     </div>
 
-    <p class="card-text">{{ post.body}}</p>
-
     <div class="card-body">
-        <div class="card card--modify-width-inside">
-            <h5 class="card-title"> Ticket - {{ post.ticket.user.username }}</h5>
-            <div class="card-header">
-                <p class="card-text">{{ post.ticket.title }}</p>
-                {% if post.user == user %}
-                    <p class="card-text">{{ post.ticket.time_created}}</p>
-                {% endif %}
-            </div>
-            <div class="card-body">
-                <p class="card-text">{{post.ticket.description}}</p>
-                {% if post.ticket.image %}
-                    <img class="ticket-img" src="{{post.ticket.image.url}}" alt="image">
-                {% endif %}
-            </div>
-        </div>
+        <p class="card-text">{{ post.body}}</p>
+        {% with post=post.ticket %}
+            {% include 'reviews/ticket_snippet.html' %}
+        {% endwith %}
     </div>
-    {% if target == "Posts" %}
+
+    {% if tag == "posts" %}
         <div class="card-footer">
             <a href="{% url 'update_review' post.pk %}" class="btn btn-primary">Modifier</a>
             <a href="{% url 'delete_review' post.pk %}" class="btn btn-primary">Supprimer</a>
         </div>
     {% endif %}
-</div>
+</article>

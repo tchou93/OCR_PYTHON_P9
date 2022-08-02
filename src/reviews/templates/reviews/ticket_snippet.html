@@ -1,0 +1,34 @@
+<article class="card">
+    {% if post.user == user and post.content_type == 'TICKET'%}
+        <h5 class="card-title">Vous avez demander une critique</h5>
+    {% elif tag == "create_review" or tag == "flux" and post.content_type == 'TICKET' %}
+        <h5 class="card-title">{{post.user.username}} a demandé une critique</h5>
+    {% elif post.content_type != 'TICKET' and post.user == user %}
+        <h5 class="card-title"> Ticket - Vous</h5>
+    {% else %}
+        <h5 class="card-title"> Ticket - {{post.user.username}}</h5>
+    {% endif %}
+
+    <div class="card-header">
+        <p class="card-text">{{ post.title }}</p>
+        <p class="card-text">{{ post.time_created}}</p>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{post.description}}</p>
+        {% if post.image %}
+            <img class="ticket-img" src="{{post.image.url}}" alt="image">
+        {% endif %}
+    </div>
+
+    {% if tag == "posts" and post.content_type == 'TICKET' %}
+        <div class="card-footer">
+            <a href="{% url 'update_ticket' post.pk %}" class="btn btn-primary">Modifier</a>
+            <a href="{% url 'delete_ticket' post.pk %}" class="btn btn-primary">Supprimer</a>
+        </div>
+    {% elif tag == "flux" and post.user != user and post.id not in ticket_already_answered and post.content_type == 'TICKET'%}
+        <div class="card-footer">
+            <a href="{% url 'create_review' post.pk %}" class="btn btn-primary">Créer une critique</a>
+        </div>
+    {% endif %}
+
+</article>

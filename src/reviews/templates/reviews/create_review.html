@@ -2,35 +2,32 @@
 {% load crispy_forms_filters %}
 {% block content %}
 <section class="review-wrapper">
-    <h3>Créer votre critique</h3>
-    <form method="post">
+    {% if tag == "create_review" %}
+        <h3>Créer une critique</h3>
+        <form method="post">
         {% csrf_token %}
+            <div class="review-body">
+                <h5>Vous êtes en train de poster en réponse à</h5>
+                {% include 'reviews/ticket_snippet.html' %}
+            </div>
+    {% elif tag == "create_review_solo" %}
+        <h3>Créer votre critique</h3>
+        <form method="post"  enctype='multipart/form-data'>
+        {% csrf_token %}
+            <div class="review-body">
+                <h5>Livre / Article</h5>
+                {{ t_form|crispy}}
+            </div>
+    {% endif %}
 
-        <div class="review-part">
-            <h4>Vous êtes en train de poster en réponse à</h4>
-            <div class="card card--modify-width-inside">
-                <h5 class="card-title"> Ticket - {{ post.user.username }}</h5>
-                <div class="card-header">
-                    <p class="card-text">{{ post.title }}</p>
-                    <p class="card-text">{{ post.time_created}}</p>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">{{post.description}}</p>
-                    {% if post.image %}
-                        <img class="ticket-img" src="{{post.image.url}}" alt="image">
-                    {% endif %}
+            <div class="review-body">
+                <h5>Critique</h5>
+                {{ r_form|crispy}}
+                <div class="buttons-cancel-send">
+                    <a href="{% url 'flux' %}" class="btn btn-primary">Annuler</a>
+                    <button class="btn btn-primary" type="submit">Envoyer</button>
                 </div>
             </div>
-        </div>
-
-        <div class="review-part">
-            <h4>Critique</h4>
-            {{ r_form|crispy}}
-            <div class="review-buttons">
-                <a href="{% url 'flux' %}" class="btn btn-primary">Retourner</a>
-                <button class="btn btn-primary" type="submit">Envoyer</button>
-            </div>
-        </div>
-    </form>
+        </form>
 </section>
 {% endblock content %}

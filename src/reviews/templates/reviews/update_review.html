@@ -6,26 +6,18 @@
     <form method="post">
         {% csrf_token %}
 
-        <div class="review-part">
+        <div class="review-body">
             <h4>Vous êtes en train de poster en réponse à</h4>
-            <div class="card card--modify-width-inside">
-                <h5 class="card-title"> Ticket - {{ ticket.user.username }}</h5>
-                <div class="card-header">
-                    <p class="card-text">{{ ticket.title }}</p>
-                    <p class="card-text">{{ ticket.time_created}}</p>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">{{ticket.description}}a</p>
-                    <img class="ticket-img" src="{{ticket.image.url}}" alt="image">
-                </div>
-            </div>
+            {% with post=ticket %}
+                {% include 'reviews/ticket_snippet.html' %}
+            {% endwith %}
         </div>
 
-        <div class="review-part">
+        <div class="review-body">
             <h4>Critique</h4>
             {{ r_form|crispy}}
-            <div class="review-buttons">
-                <a href="{% url 'posts' %}" class="btn btn-primary">Retourner</a>
+            <div class="buttons-cancel-send">
+                <a href="{% url 'posts' %}" class="btn btn-primary">Annuler</a>
                 <button class="btn btn-primary" type="submit">Envoyer</button>
             </div>
         </div>

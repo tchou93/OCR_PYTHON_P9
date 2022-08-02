@@ -9,10 +9,14 @@ from itertools import chain
 from django.db.models import CharField, Value
 
 from users.models import UserFollow
-
+from .utils_func import (
+    get_users_viewable_reviews,
+    get_users_viewable_tickets,
+)
 
 @login_required
 def create_review_solo(request):
+    tag = "create_review_solo"
     if request.method == 'POST':
         r_form = ReviewForm(request.POST)
         try:
@@ -36,15 +40,16 @@ def create_review_solo(request):
         r_form = ReviewForm()
         t_form = TicketForm()
 
-    return render(request, 'reviews/create_review_solo.html', {'r_form': r_form,
-                                                               't_form': t_form
+    return render(request, 'reviews/create_review.html', {'r_form': r_form,
+                                                               't_form': t_form,
+                                                               'tag': tag
                                                                })
 
 
 @login_required
 def create_review(request, pk):
     ticket = get_object_or_404(Ticket, id=pk)
-    target = "review"
+    tag = "create_review"
     if request.method == 'POST':
         r_form = ReviewForm(request.POST)
         if r_form.is_valid():
@@ -59,7 +64,7 @@ def create_review(request, pk):
 
     return render(request, 'reviews/create_review.html', {'r_form': r_form,
                                                           'post': ticket,
-                                                          'target': target
+                                                          'tag': tag
                                                           })
 
 
@@ -127,63 +132,39 @@ def delete_review(request, pk):
     review.delete()
     return redirect('posts')
 
-
-def func_followed_users(user):
-    return [userfollow.followed_user for userfollow in UserFollow.objects.filter(user=user)]
-
-
-def get_users_viewable_reviews(user):
-    followed_users = func_followed_users(user)
-
-    review_answered_ticket_user_ids = []
-    for ticket in Ticket.objects.filter(user=user):
-        for review in Review.objects.all():
-            if review.ticket == ticket:
-                review_answered_ticket_user_ids.append(review.id)
-
-    followed_users_reviews_ids = \
-        [followed_user_review.id for followed_user_review in Review.objects.filter(user__in=followed_users)]
-    followed_user_reviews_ids = \
-        [user_review.id for user_review in Review.objects.filter(user=user)]
-    reviews = Review.objects.filter(
-        id__in=followed_users_reviews_ids + followed_user_reviews_ids + review_answered_ticket_user_ids)
-    return reviews
-
-
-def get_users_viewable_tickets(user):
-    followed_users = func_followed_users(user)
-
-    followed_users_tickets_ids = \
-        [followed_user_ticket.id for followed_user_ticket in Ticket.objects.filter(user__in=followed_users)]
-    followed_user_tickets_ids = \
-        [user_ticket.id for user_ticket in Ticket.objects.filter(user=user)]
-    tickets = Ticket.objects.filter(id__in=followed_users_tickets_ids + followed_user_tickets_ids)
-    return tickets
-
-
 @login_required
 def posts(request):
     user_all_tickets = Ticket.objects.filter(user=request.user)
     user_all_reviews = Review.objects.filter(user=request.user)
-    target = "Posts"
 
-    return render(request, 'reviews/posts.html', {'user_all_tickets': user_all_tickets,
-                                                  'user_all_reviews': user_all_reviews,
-                                                  'target': target
-                                                  })
+    user_all_tickets = user_all_tickets.annotate(content_type=Value('TICKET', CharField()))
+    user_all_reviews = user_all_reviews.annotate(content_type=Value('REVIEW', CharField()))
+    tag = "posts"
+
+    all_posts = sorted(
+        chain(user_all_reviews, user_all_tickets),
+        key=lambda post: post.time_created,
+        reverse=True
+    )
+
+    return render(request, 'reviews/feed.html', {'all_posts': all_posts,
+                                                 'tag': tag
+                                                 })
 
 
 def flux(request):
     if not request.user.is_authenticated:
         return redirect('login')
     reviews = get_users_viewable_reviews(request.user)
+
     # returns queryset of reviews
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
-
     tickets = get_users_viewable_tickets(request.user)
 
+    # returns queryset of reviews
     user_all_reviews = Review.objects.filter(user=request.user)
     ticket_already_answered = [user_review.ticket_id for user_review in user_all_reviews]
+
     # returns queryset of tickets
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
 
@@ -193,8 +174,9 @@ def flux(request):
         key=lambda post: post.time_created,
         reverse=True
     )
-    target = "Flux"
-    return render(request, 'reviews/flux.html', context={'all_posts': all_posts,
-                                                         'target': target,
+
+    tag = "flux"
+    return render(request, 'reviews/feed.html', context={'all_posts': all_posts,
+                                                         'tag': tag,
                                                          'ticket_already_answered': ticket_already_answered
                                                          })

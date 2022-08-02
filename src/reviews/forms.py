@@ -1,17 +1,12 @@
-from crispy_forms.bootstrap import InlineRadios
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout
 from django import forms
-
 from reviews.models import Review, Ticket
 
 
 class ReviewForm(forms.ModelForm):
-
     class Meta:
         model = Review
         fields = ['headline', 'rating', 'body']
-        labels = {"headline": "Titre de la critique",
+        labels = {"headline": "Titre",
                   "rating": "Note",
                   "body": "Commentaire"
                   }
@@ -23,7 +18,6 @@ class ReviewForm(forms.ModelForm):
                    (5, '- 5')
                    ]
         widgets = {"rating": forms.RadioSelect(choices=CHOICES)}
-
 
 
 class TicketForm(forms.ModelForm):

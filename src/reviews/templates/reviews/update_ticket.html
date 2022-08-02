@@ -2,14 +2,14 @@
 {% load crispy_forms_filters %}
 {% block content %}
 <section class="review-wrapper">
-     <h3>Modifier votre ticket</h3>
+    <h3>Modifier votre ticket</h3>
     <form method="post"  enctype='multipart/form-data'>
         {% csrf_token %}
-        <div class="review-part">
+        <div class="review-body">
             <h4>Ticket</h4>
             {{ t_form|crispy}}
-            <div class="ticket-buttons">
-                <a href="{% url 'posts' %}" class="btn btn-primary">Retourner</a>
+            <div class="buttons-cancel-send">
+                <a href="{% url 'posts' %}" class="btn btn-primary">Annuler</a>
                 <button class="btn btn-primary" type="submit">Envoyer</button>
             </div>
         </div>
