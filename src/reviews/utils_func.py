@@ -6,7 +6,7 @@ def get_users_viewable_reviews(user):
     followed_users = [userfollow.followed_user for userfollow in UserFollow.objects.filter(user=user)]
 
     review_answered_ticket_user_ids = []
-    for ticket in Ticket.objects.filter(user=user):
+    for ticket in Ticket.objects.filter(user__in=followed_users + [user]):
         for review in Review.objects.all():
             if review.ticket == ticket:
                 review_answered_ticket_user_ids.append(review.id)

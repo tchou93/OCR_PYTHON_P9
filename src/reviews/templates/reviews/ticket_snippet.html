@@ -1,6 +1,6 @@
 <article class="card">
     {% if post.user == user and post.content_type == 'TICKET'%}
-        <h5 class="card-title">Vous avez demander une critique</h5>
+        <h5 class="card-title">Vous avez demandé une critique</h5>
     {% elif tag == "create_review" or tag == "flux" and post.content_type == 'TICKET' %}
         <h5 class="card-title">{{post.user.username}} a demandé une critique</h5>
     {% elif post.content_type != 'TICKET' and post.user == user %}

@@ -29,3 +29,46 @@ http://127.0.0.1:8000/
 ```
 * Enter to the link : http://127.0.0.1:8000/admin (name: tan, pass:Angela93)
 ```
+
+## Main information of the database necessary for the tests:
+```
+name: tan
+pass: Angela93
+subscriptions: henri, jjacques, alison
+subscribers: alison
+Posts:
+ review:
+ - Candide (tan)
+ - The secret garden (alison)
+ - Gone with the wind (jjacques)
+ - Alice au pays des merveilles (henri)
+ ticket:
+ - Le petit prince (tan)
+ - Candide (tan)
+ 
+name: henri
+pass: Angela94
+subscriptions: alison
+subscribers: tan, jjacques, alison
+Posts:
+ review
+ - Alice au pays des merveilles (henri)
+ - The secret garden (alison)
+ ticket:
+ - Alice au pays des merveilles (henri)
+ 
+name: jjacques
+pass: Angela95
+subscriptions: henri, alison
+subscribers: tan
+Posts:
+ ticket:
+ - Gone with the wind (jjacques)
+
+name: alison
+pass: Angela96
+subscriptions: tan, henri
+subscribers: henri, jjacques, tan
+ ticket:
+ - The secret garden (alison)
+```
