@@ -2,16 +2,14 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<section class="subscription">
+<section class="subscription-wrapper">
     <h4>Suivre d'autres utilisateurs</h4>
 
     <form method="POST" >
         {% csrf_token %}
-        <div class="form-subscription">
-            <div class="form-subscription2">
-                {{ form|crispy }}
-            </div>
-            <button class="btn btn-primary" type="submit" id="send-subscription">Envoyer</button>
+        <div class="subscription-form">
+            {{ form|crispy }}
+            <button class="btn btn-primary" type="submit" id="subscription-send">Envoyer</button>
         </div>
     </form>
     <div class="message">
@@ -21,24 +19,22 @@
             {% endfor %}
         {% endif %}
     </div>
-    <section class="subscriptions_listing">
+    <section class="subscription-listing">
         {% if followed_users %}
             <h4>Abonnements</h4>
             {% for followed_user in followed_users %}
-                <div class="test">
+                <div class="subscription-listing-bar">
                     <p> {{followed_user}} </p>
-                    <a class="unsubscribe" href='{% url 'unsubscribe' followed_user.pk %}'>désabonner</a>
+                    <a href='{% url 'unsubscribe' followed_user.pk %}'>désabonner</a>
                 </div>
             {% endfor %}
         {% endif %}
-    </section>
 
-    <section class="subscribers_listing">
         {% if followed_bys %}
             <h4>Abonnés</h4>
             {% for followed_by in followed_bys %}
-                <div class="test">
-                    <p class="listing_font"> {{followed_by}} </p>
+                <div class="subscription-listing-bar">
+                    <p> {{followed_by}} </p>
                 </div>
             {% endfor %}
         {% endif %}

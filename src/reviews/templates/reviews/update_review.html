@@ -1,26 +1,25 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
 {% block content %}
-<section class="review-wrapper">
-    <h3>Modifier votre critique</h3>
-    <form method="post">
-        {% csrf_token %}
-
-        <div class="review-body">
-            <h4>Vous êtes en train de poster en réponse à</h4>
-            {% with post=ticket %}
-                {% include 'reviews/ticket_snippet.html' %}
-            {% endwith %}
-        </div>
-
-        <div class="review-body">
-            <h4>Critique</h4>
-            {{ r_form|crispy}}
-            <div class="buttons-cancel-send">
-                <a href="{% url 'posts' %}" class="btn btn-primary">Annuler</a>
-                <button class="btn btn-primary" type="submit">Envoyer</button>
+    <section class="review-wrapper">
+        <h3>Modifier votre critique</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="review-body">
+                <h4>Vous êtes en train de poster en réponse à</h4>
+                {% with post=ticket %}
+                    {% include 'reviews/ticket_snippet.html' %}
+                {% endwith %}
             </div>
-        </div>
-    </form>
-</section>
+
+            <div class="review-body">
+                <h4>Critique</h4>
+                {{ r_form|crispy}}
+                <div class="buttons-cancel-send">
+                    <a href="{% url 'posts' %}" class="btn btn-primary">Annuler</a>
+                    <button class="btn btn-primary" type="submit">Envoyer</button>
+                </div>
+            </div>
+        </form>
+    </section>
 {% endblock content %}
